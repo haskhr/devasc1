@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <ACCT100 extra="fun">
+    <paid>100</paid>
+    <owes>60</owes>
+  </ACCT100>
+  <ACCT200>
+    <paid>60</paid>
+    <owes>70</owes>
+  </ACCT200>
+</root>

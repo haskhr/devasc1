@@ -1,0 +1,9 @@
+---
+# YAML allows comments, super useful!
+ACCT100:
+  paid: 100
+  owes: 60
+ACCT200:
+  paid: 60
+  owes: 70
+
