@@ -7,54 +7,14 @@ Purpose: A simple Flask web app that demonstrates the Model View Controller
 """
 
 from flask import Flask, render_template, request
-from logging import DEBUG
-import json
-
-# import yaml
-# import xmltodict
-
-
-class Database:
-    """
-    Represent the interface to the data (model). Can be statically defined
-    data, read from a simple file such as JSON, YAML, or XML, or a more
-    complex remote database including postgres and SQL-based options.
-    """
-
-    def __init__(self, path):
-        """
-        Constructor to initialize the data attribute as
-        a dictionary where the account number is the key and
-        the value is another dictionary with keys "paid" and "owes".
-        """
-
-        # Open the specified database file for reading and perform loading
-        with open(path, "r") as handle:
-            self.data = json.load(handle)
-
-            # ALTERNATIVE IMPLEMENTATIONS: Using YAML or XML to load data
-            # self.data = yaml.safe_load(handle)
-            # self.data = xmltodict.parse(handle.read())["root"]
-
-    def balance(self, acct_id):
-        """
-        Determines the customer balance by finding the difference between
-        what has been paid and what is still owed on the account, The "model"
-        can provide methods to help interface with the data; it is not
-        limited to only storing data.
-        """
-        acct = self.data.get(acct_id)
-        if acct:
-            return int(acct["paid"]) - int(acct["owes"])
-        return None
+from database import Database
 
 
 # Create Flask object and set logging level to assist with debugging/learning
 app = Flask(__name__)
-app.logger.setLevel(DEBUG)
 
 # Toggle between db.json, db.yml, and db.xml
-path = "data/db.xml"
+path = "data/db.json"
 db = Database(path)
 
 
