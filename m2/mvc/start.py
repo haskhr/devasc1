@@ -33,8 +33,8 @@ def index():
         # is to process this information, which includes using methods from
         # the "model" to get the information we need (in this case,
         # the account balance).
-        acct_id = request.form["acctid"].upper()
-        acct_balance = db.balance(acct_id)
+        acct_id = request.form["acctid"]
+        acct_balance = db.balance(acct_id.upper())
         app.logger.debug(f"balance for {acct_id}: {acct_balance}")
     else:
         # During a normal GET request, no need to perform any calculations
