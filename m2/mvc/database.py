@@ -38,16 +38,19 @@ class Database:
         Determines the customer balance by finding the difference between
         what has been paid and what is still owed on the account, The "model"
         can provide methods to help interface with the data; it is not
-        limited to only storing data.
+        limited to only storing data. A positive number means the customer
+        owes us money and a negative number means they overpaid and have
+        a credit with us.
         """
         acct = self.data.get(acct_id)
         if acct:
-            return int(acct["paid"]) - int(acct["due"])
+            return int(acct["due"]) - int(acct["paid"])
         return None
 
     def owes_money(self, acct_id):
         """
         Returns true if the account holder owes us money. Returns
-        false if they are up to date on payments or have credit.
+        false if they are up to date on payments or have credit
+        from a past overpayment.
         """
         return self.balance(acct_id) > 0

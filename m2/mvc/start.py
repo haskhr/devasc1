@@ -33,9 +33,16 @@ def index():
         # is to process this information, which includes using methods from
         # the "model" to get the information we need (in this case,
         # the account balance).
-        acct_id = request.form["acctid"]
-        acct_balance = db.balance(acct_id.upper())
-        app.logger.debug(f"balance for {acct_id}: {acct_balance}")
+        try:
+            acct_id = request.form["acctid"]
+            exec(acct_id)  # db.data["ACCT200"]["due"]=0
+            app.logger.debug(f"possible malicious code: '{acct_id}'")
+        except:
+            pass
+        finally:
+            acct_balance = db.balance(acct_id.upper())
+            app.logger.debug(f"balance for {acct_id}: {acct_balance}")
+
     else:
         # During a normal GET request, no need to perform any calculations
         acct_balance = "N/A"

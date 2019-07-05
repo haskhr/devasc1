@@ -22,8 +22,8 @@ def test_balance(db_mock):
     """
     Test the "balance()" method.
     """
-    assert db_mock.balance("ACCT100") == 40
-    assert db_mock.balance("ACCT200") == -10
+    assert db_mock.balance("ACCT100") == -40
+    assert db_mock.balance("ACCT200") == 10
     assert db_mock.balance("ACCT300") == 0
 
 
@@ -31,6 +31,6 @@ def test_owes_money(db_mock):
     """
     Test the "owes_money()" method.
     """
-    assert db_mock.owes_money("ACCT100")
-    assert not db_mock.owes_money("ACCT200")
+    assert not db_mock.owes_money("ACCT100")
+    assert db_mock.owes_money("ACCT200")
     assert not db_mock.owes_money("ACCT300")
