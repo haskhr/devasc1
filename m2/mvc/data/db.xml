@@ -2,10 +2,14 @@
 <root>
   <ACCT100 extra="fun">
     <paid>100</paid>
-    <owes>60</owes>
+    <due>60</due>
   </ACCT100>
   <ACCT200>
     <paid>60</paid>
-    <owes>70</owes>
+    <due>70</due>
   </ACCT200>
+  <ACCT300>
+    <paid>0</paid>
+    <due>0</due>
+  </ACCT300>
 </root>

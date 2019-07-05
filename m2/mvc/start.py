@@ -10,7 +10,7 @@ from flask import Flask, render_template, request
 from database import Database
 
 
-# Create Flask object and set logging level to assist with debugging/learning
+# Create Flask object
 app = Flask(__name__)
 
 # Toggle between db.json, db.yml, and db.xml
@@ -33,12 +33,12 @@ def index():
         # is to process this information, which includes using methods from
         # the "model" to get the information we need (in this case,
         # the account balance).
-        acct_id = request.form["acctid"]
+        acct_id = request.form["acctid"].upper()
         acct_balance = db.balance(acct_id)
         app.logger.debug(f"balance for {acct_id}: {acct_balance}")
     else:
         # During a normal GET request, no need to perform any calculations
-        acct_balance = None
+        acct_balance = "N/A"
 
     # This is the "view", which is the jinja2 templated HTML data that is
     # presented to the user. The user interacts with this webpage and

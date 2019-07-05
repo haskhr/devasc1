@@ -1,10 +1,14 @@
 {
   "ACCT100": {
     "paid": 100,
-    "owes": 60
+    "due": 60
   },
   "ACCT200": {
     "paid": 60,
-    "owes": 70
+    "due": 70
+  },
+  "ACCT300": {
+    "paid": 0,
+    "due": 0
   }
 }

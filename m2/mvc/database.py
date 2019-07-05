@@ -6,11 +6,6 @@ Purpose: A simple Flask web app that demonstrates the Model View Controller
 (MVC) pattern in a meaningful and somewhat realistic way.
 """
 
-import json
-
-# import yaml
-# import xmltodict
-
 
 class Database:
     """
@@ -23,15 +18,19 @@ class Database:
         """
         Constructor to initialize the data attribute as
         a dictionary where the account number is the key and
-        the value is another dictionary with keys "paid" and "owes".
+        the value is another dictionary with keys "paid" and "due".
         """
 
         # Open the specified database file for reading and perform loading
         with open(path, "r") as handle:
+            import json
             self.data = json.load(handle)
 
             # ALTERNATIVE IMPLEMENTATIONS: Using YAML or XML to load data
+            # import yaml
             # self.data = yaml.safe_load(handle)
+
+            # import xmltodict
             # self.data = xmltodict.parse(handle.read())["root"]
 
     def balance(self, acct_id):
@@ -43,7 +42,7 @@ class Database:
         """
         acct = self.data.get(acct_id)
         if acct:
-            return int(acct["paid"]) - int(acct["owes"])
+            return int(acct["paid"]) - int(acct["due"])
         return None
 
     def owes_money(self, acct_id):
@@ -51,27 +50,4 @@ class Database:
         Returns true if the account holder owes us money. Returns
         false if they are up to date on payments or have credit.
         """
-        return self.balance(acct_id) < 0
-
-
-def run_unit_tests():
-    """
-    Simple, un-frameworked unit testing to demonstrate test-driven development.
-    Don't do it this way in real life! Focus on the logical flow, not the code.
-    """
-    # Build test database
-    test_db = Database("data/db.json")
-
-    # After-the-fact tests (not TDD, but still useful)
-    assert test_db.balance("ACCT100") == 40
-    assert test_db.balance("ACCT200") == -10
-
-    # Real TDD tests for a method not yet implemented ...
-    assert not test_db.owes_money("ACCT100")
-    assert test_db.owes_money("ACCT200")
-
-    print("All database tests passed!")
-
-
-if __name__ == "__main__":
-    run_unit_tests()
+        return self.balance(acct_id) > 0
