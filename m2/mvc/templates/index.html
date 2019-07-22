@@ -29,8 +29,6 @@
                           <article>
                             <p>Enter account ID (e.g. ACCT100): <input type="text" name="acctid"></p>
                             <p><button type="submit">Submit</button></p>
-                            {# This is a comment in jinja2, but the "if" statement below #}
-                            {# prints the account balance if acct_balance defined #}
                             {% if acct_balance is not none %}
                               <p>Account balance: {{ acct_balance }}</p>
                             {% else %}

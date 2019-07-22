@@ -20,17 +20,19 @@ def db_mock():
 
 def test_balance(db_mock):
     """
-    Test the "balance()" method.
+    Test the "balance()" method. These tests were written AFTER the
+    balance() method was implemented; this is not TDD.
     """
-    assert db_mock.balance("ACCT100") == -40
-    assert db_mock.balance("ACCT200") == 10
+    assert db_mock.balance("ACCT100") == 40
+    assert db_mock.balance("ACCT200") == -10
     assert db_mock.balance("ACCT300") == 0
 
 
 def test_owes_money(db_mock):
     """
-    Test the "owes_money()" method.
+    Test the "owes_money()" method. These tests were written BEFORE the
+    owes_money() method was implemented; this is TDD.
     """
-    assert not db_mock.owes_money("ACCT100")
-    assert db_mock.owes_money("ACCT200")
+    assert db_mock.owes_money("ACCT100")
+    assert not db_mock.owes_money("ACCT200")
     assert not db_mock.owes_money("ACCT300")
