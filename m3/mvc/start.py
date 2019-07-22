@@ -10,9 +10,14 @@ from flask import Flask, render_template, request
 from database import Database
 
 
-# Create Flask object and instantiate database object
+# Create Flask object
 app = Flask(__name__)
-db = Database()
+
+# Toggle between JSON, YAML, and XML for testing
+# path = "data/db.yml"
+# path = "data/db.xml"
+path = "data/db.json"
+db = Database(path)
 
 
 @app.route("/", methods=["GET", "POST"])

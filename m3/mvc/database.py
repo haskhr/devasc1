@@ -9,22 +9,28 @@ Purpose: A simple Flask web app that demonstrates the Model View Controller
 
 class Database:
     """
-    Represent the interface to the data (model). Uses statically-defined
-    data to keep things simple for now.
+    Represent the interface to the data (model). Can read from a
+    simple file such as JSON, YAML, or XML. Uses JSON by default.
     """
 
-    def __init__(self):
+    def __init__(self, path):
         """
         Constructor to initialize the data attribute as
         a dictionary where the account number is the key and
         the value is another dictionary with keys "paid" and "due".
         """
 
-        self.data = {
-            "ACCT100": {"paid": 60, "due": 100},  # balance = 40
-            "ACCT200": {"paid": 70, "due": 60},  # balance = -10
-            "ACCT300": {"paid": 0, "due": 0},  # balance = 0
-        }
+        # Open the specified database file for reading and perform loading
+        with open(path, "r") as handle:
+            import json
+            self.data = json.load(handle)
+
+            # ALTERNATIVE IMPLEMENTATIONS: Using YAML or XML to load data
+            # import yaml
+            # self.data = yaml.safe_load(handle)
+
+            # import xmltodict
+            # self.data = xmltodict.parse(handle.read())["root"]
 
     def balance(self, acct_id):
         """
