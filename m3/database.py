@@ -31,6 +31,7 @@ class Database:
 
             # import xmltodict
             # self.data = xmltodict.parse(handle.read())["root"]
+            # print(self.data)
 
     def balance(self, acct_id):
         """
