@@ -6,6 +6,7 @@ Purpose: Demonstrate Python "requests" to add a new device
 to Cisco DNA Center using the REST API.
 """
 
+import time
 import requests
 
 
@@ -61,8 +62,6 @@ def main():
         print(f"Request accepted: status code {add_resp.status_code}")
 
         # Wait 10 seconds
-        import time
-
         time.sleep(10)
 
         # Query DNA center for the status of the specific task ID
