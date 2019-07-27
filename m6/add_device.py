@@ -8,6 +8,7 @@ to Cisco DNA Center using the REST API.
 
 import time
 import requests
+from auth_token import get_token
 
 
 def main():
@@ -15,26 +16,13 @@ def main():
     Execution begins here.
     """
 
+    # Reuse the get_token() function from before. If it fails
+    # allow exception to crash problem
+    token = get_token()
+
     # Declare useful local variables to simplify request process
     api_path = "https://sandboxdnac.cisco.com/dna"
-    auth = ("devnetuser", "Cisco123!")
-    headers = {"Content-Type": "application/json"}
-
-    # Issue HTTP POST request to the proper URL to request a token
-    auth_resp = requests.post(
-        f"{api_path}/system/api/v1/auth/token", auth=auth, headers=headers
-    )
-
-    # If successful, print token. Else, print failure info
-    if auth_resp.ok:
-        token = auth_resp.json()["Token"]
-        # print(token)
-    else:
-        print(f"Token request failed with code {auth_resp.status_code}")
-        print(f"Failure body: {auth_resp.text}")
-
-    # Add a new header to carry our token in future HTTP requests
-    headers.update({"X-Auth-Token": token})
+    headers = {"Content-Type": "application/json", "X-Auth-Token": token}
 
     # Create a dictionary to represent the new device to add
     new_device_dict = {
@@ -59,9 +47,9 @@ def main():
     )
 
     if add_resp.ok:
-        print(f"Request accepted: status code {add_resp.status_code}")
 
-        # Wait 10 seconds
+        # Wait 10 seconds after server responds
+        print(f"Request accepted: status code {add_resp.status_code}")
         time.sleep(10)
 
         # Query DNA center for the status of the specific task ID

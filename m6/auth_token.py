@@ -9,9 +9,10 @@ from Cisco DNA Center using the REST API.
 import requests
 
 
-def main():
+def get_token():
     """
-    Execution begins here.
+    Gets an access token from Cisco DNA Center. Returns the token
+    string if successful; False otherwise.
     """
 
     # Declare useful local variables to simplify request process
@@ -24,13 +25,19 @@ def main():
         f"{api_path}/system/api/v1/auth/token", auth=auth, headers=headers
     )
 
-    # If successful, print token. Else, print failure info
-    if auth_resp.ok:
-        token = auth_resp.json()["Token"]
-        print(token)
-    else:
-        print(f"Token request failed with code {auth_resp.status_code}")
-        print(f"Failure body: {auth_resp.text}")
+    # If successful, print token. Else, raise HTTPError with details
+    auth_resp.raise_for_status()
+    token = auth_resp.json()["Token"]
+    return token
+
+
+def main():
+    """
+    Execution begins here.
+    """
+
+    token = get_token()
+    print(token)
 
 
 if __name__ == "__main__":
