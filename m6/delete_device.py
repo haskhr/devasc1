@@ -46,7 +46,6 @@ def main():
         # If delete succeeded, check task ID for completion
         if delete_resp.ok:
 
-            # Wait 10 seconds
             # Wait 10 seconds after server responds
             print(f"Request accepted: status code {delete_resp.status_code}")
             time.sleep(10)

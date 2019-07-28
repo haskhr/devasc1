@@ -24,7 +24,6 @@ def main():
     headers = {"Content-Type": "application/json", "X-Auth-Token": token}
 
     # Issue HTTP GET request to get list of network devices
-    # For brevity, not going to perform error checking again
     get_resp = requests.get(
         f"{api_path}/intent/api/v1/network-device", headers=headers
     )
