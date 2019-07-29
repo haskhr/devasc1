@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "DevNet DNAC sandbox token",
+			"name": "DevNet DNAC get token",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -72,7 +72,7 @@
 					},
 					{
 						"key": "X-Auth-Token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YmQ5OGQzNWIyYmVhMDAwNGMzZWM5YmYiLCJhdXRoU291cmNlIjoiaW50ZXJuYWwiLCJ0ZW5hbnROYW1lIjoiVE5UMCIsInJvbGVzIjpbIjViZDM2MzRiYjJiZWEwMDA0YzNlYmI1YSJdLCJ0ZW5hbnRJZCI6IjViZDM2MzRhYjJiZWEwMDA0YzNlYmI1OCIsImV4cCI6MTU2MTA4MTI2OSwidXNlcm5hbWUiOiJkZXZuZXR1c2VyIn0.EoljmslmrnMwg7edaBOhySr-dNfB955uf3QJCowGekg",
+						"value": "PASTE-TOKEN-HERE",
 						"type": "text"
 					}
 				],
