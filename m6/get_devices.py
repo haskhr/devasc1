@@ -16,7 +16,7 @@ def main():
     """
 
     # Reuse the get_token() function from before. If it fails
-    # allow exception to crash problem
+    # allow exception to crash program
     token = get_token()
 
     # Declare useful local variables to simplify request process

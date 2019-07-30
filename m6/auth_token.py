@@ -12,7 +12,7 @@ import requests
 def get_token():
     """
     Gets an access token from Cisco DNA Center. Returns the token
-    string if successful; False otherwise.
+    string if successful; raises HTTPError otherwise.
     """
 
     # Declare useful local variables to simplify request process
